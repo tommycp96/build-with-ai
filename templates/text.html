@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Build with Gemini</h2>
+
+<style>
+    #prompt {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+  </style>
+
+<form action="/" method="post">
+  <label for="prompt">Prompt:</label><br>
+  <input type="text" id="prompt" name="prompt" placeholder="What is the meaning of life?"><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>The model will return the reponse based on the prompt that you key-in.</p>
+<p> {{ responses }} </p>
+
+</body>
+</html>
