@@ -1,58 +1,116 @@
-# Cloud Run Hello World with Cloud Code
+# Build with AI
 
-"Hello World" is a [Cloud Run](https://cloud.google.com/run/docs) application that renders a simple webpage.
+Welcome to the **Build with AI** project! This application allows users to interact with the Gemini 1.5 Pro Preview model via a user-friendly web interface, leveraging Google Cloud services. It's built using Flask for the backend and Tailwind CSS for styling.
 
-For details on how to use this sample as a template in Cloud Code, read the documentation for Cloud Code for [VS Code](https://cloud.google.com/code/docs/vscode/quickstart-cloud-run?utm_source=ext&utm_medium=partner&utm_campaign=CDR_kri_gcp_cloudcodereadmes_012521&utm_content=-) or [IntelliJ](https://cloud.google.com/code/docs/intellij/quickstart-cloud-run?utm_source=ext&utm_medium=partner&utm_campaign=CDR_kri_gcp_cloudcodereadmes_012521&utm_content=-).
+## Overview
 
-### Table of Contents
-* [Getting Started with VS Code](#getting-started-with-vs-code)
-* [Getting Started with IntelliJ](#getting-started-with-intellij)
-* [Sign up for User Research](#sign-up-for-user-research)
+This project demonstrates how to integrate the latest AI technologies with a web application. The app accepts user prompts, processes them using Google Vertex AI, and displays the AI's responses in a clean, styled format.
 
----
-## Getting Started with VS Code
+> This project has been deployed to my Cloud Run and publicly accessible through this URL https://build-with-ai-sw52hvjzda-uc.a.run.app
 
-### Run the app locally with the Cloud Run Emulator
-1. Click on the Cloud Code status bar and select 'Run on Cloud Run Emulator'.  
-![image](./img/status-bar.png)
+## Features
 
-2. Use the Cloud Run Emulator dialog to specify your [builder option](https://cloud.google.com/code/docs/vscode/deploying-a-cloud-run-app#deploying_a_cloud_run_service). Cloud Code supports Docker, Jib, and Buildpacks. See the skaffold documentation on [builders](https://skaffold.dev/docs/pipeline-stages/builders/) for more information about build artifact types.  
-![image](./img/build-config.png)
+- **AI-Driven Responses**: Users can input prompts and receive AI-generated responses in markdown format.
+- **Responsive UI**: The application uses Tailwind CSS for a clean and responsive design.
+- **Cloud-Native**: The application is hosted on Google Cloud Run, ensuring scalability and security.
 
-3. Click ‘Run’. Cloud Code begins building your image.
+## Tech Stack
 
-4. View the build progress in the OUTPUT window. Once the build has finished, click on the URL in the OUTPUT window to view your live application.  
-![image](./img/cloud-run-url.png)
+- **Backend**: Flask
+- **Frontend**: Tailwind CSS
+- **AI Model**: Gemini 1.5 Pro Preview
+- **Cloud**: Google Cloud Run and Google Vertex AI
 
-5. To stop the application, click the stop icon on the Debug Toolbar.
+## Getting Started
 
----
-## Getting Started with IntelliJ
+### Prerequisites
 
-### Run the app locally with the Cloud Run Emulator
+To run this project locally, you need:
 
-#### Define run configuration
+1. Python 3.7+ installed.
+2. A Google Cloud Platform account with the necessary permissions for Vertex AI and Cloud Run.
 
-1. Click the Run/Debug configurations dropdown on the top taskbar and select 'Edit Configurations'.  
-![image](./img/edit-config.png)
+### Installation
 
-2. Select 'Cloud Run: Run Locally' and specify your [builder option](https://cloud.google.com/code/docs/intellij/developing-a-cloud-run-app#defining_your_run_configuration). Cloud Code supports Docker, Jib, and Buildpacks. See the skaffold documentation on [builders](https://skaffold.dev/docs/pipeline-stages/builders/) for more information about build artifact types.  
-![image](./img/local-build-config.png)
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/tommycp96/build-with-ai.git
+   ```
+2. **Navigate to the project directory**:
+   ```sh
+   cd build-with-ai
+   ```
+3. **Create a virtual environment**:
+   ```sh
+   python3 -m venv venv
+   ```
+4. **Activate the virtual environment**:
 
-#### Run the application
-1. Click the Run/Debug configurations dropdown and select 'Cloud Run: Run Locally'. Click the run icon.  
-![image](./img/config-run-locally.png)
+   - On Windows:
+     ```sh
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```sh
+     source venv/bin/activate
+     ```
 
-2. View the build process in the output window. Once the build has finished, you will receive a notification from the Event Log. Click 'View' to access the local URLs for your deployed services.  
-![image](./img/local-success.png)
+5. **Install dependencies**:
 
----
-## Sign up for User Research
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-We want to hear your feedback!
+6. **Run the application locally**:
+   ```sh
+   flask run
+   ```
 
-The Cloud Code team is inviting our user community to sign-up to participate in Google User Experience Research. 
+### Deployment
 
-If you’re invited to join a study, you may try out a new product or tell us what you think about the products you use every day. At this time, Google is only sending invitations for upcoming remote studies. Once a study is complete, you’ll receive a token of thanks for your participation such as a gift card or some Google swag. 
+To deploy this application on Google Cloud Run:
 
-[Sign up using this link](https://google.qualtrics.com/jfe/form/SV_4Me7SiMewdvVYhL?reserved=1&utm_source=In-product&Q_Language=en&utm_medium=own_prd&utm_campaign=Q1&productTag=clou&campaignDate=January2021&referral_code=UXbT481079) and answer a few questions about yourself, as this will help our research team match you to studies that are a great fit.
+1. **Build and push the container**:
+
+   ```sh
+   gcloud builds submit --tag gcr.io/[PROJECT-ID]/[IMAGE-NAME]
+   ```
+
+2. **Deploy to Cloud Run**:
+
+   ```sh
+   gcloud run deploy --image gcr.io/[PROJECT-ID]/[IMAGE-NAME] --platform managed
+   ```
+
+### Configuration
+
+Make sure to set up the necessary service accounts and permissions to use the Gemini 1.5 Pro Preview model on Google Vertex AI. The configuration details for the Vertex AI integration should be managed via environment variables or other secure methods to protect sensitive information.
+
+## Usage
+
+1. **Submit a Prompt**:
+
+   - Enter a prompt into the input field and click "Submit."
+   - The application will display a loading spinner while processing the input.
+   - The AI response will be displayed in markdown format.
+
+2. **Modify Input**:
+   - The input field can be modified or cleared to input a new prompt.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Acknowledgements
+
+- **Google Cloud** for the robust cloud platform.
+- **Tailwind CSS** for the intuitive frontend framework.
+- **Flask** for the lightweight web framework.
+
+## Contact
+
+For further inquiries or support, please contact Tommy, the developer, via the repository's contact information.
