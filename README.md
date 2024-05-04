@@ -6,7 +6,7 @@ Welcome to the **Build with AI** project! This application allows users to inter
 
 This project demonstrates how to integrate the latest AI technologies with a web application. The app accepts user prompts, processes them using Google Vertex AI, and displays the AI's responses in a clean, styled format.
 
-> This project has been deployed to my Cloud Run and publicly accessible through this URL https://build-with-ai-sw52hvjzda-uc.a.run.app
+> This project has been deployed on Google Cloud Run and publicly accessible through this URL https://build-with-ai-sw52hvjzda-uc.a.run.app
 
 ## Features
 

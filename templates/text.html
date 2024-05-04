@@ -29,12 +29,20 @@
         opacity: 1;
       }
 
-      .loading {
+      .loading-spinner {
         display: none;
       }
 
-      .loading.show {
+      .loading-spinner.show {
         display: inline-block;
+      }
+
+      .loading-text {
+        display: inline;
+      }
+
+      .loading-text.hide {
+        display: none;
       }
 
       main {
@@ -58,17 +66,16 @@
           placeholder="What is the meaning of life?"
           class="border-2 border-gray-300 rounded p-2 w-full mb-2"
         />
-        <div class="flex items-center">
-          <input
-            id="submit-btn"
-            type="submit"
-            value="Submit"
-            class="bg-gray-200 text-black font-semibold py-2 px-4 rounded cursor-pointer btn-disabled"
-            disabled
-          />
+        <button
+          id="submit-btn"
+          type="submit"
+          class="bg-gray-200 text-black font-semibold py-2 px-4 rounded cursor-pointer btn-disabled"
+          disabled
+        >
+          <span id="submit-text" class="loading-text">Submit</span>
           <svg
             id="loading-spinner"
-            class="loading ml-2 w-6 h-6 text-gray-600 animate-spin"
+            class="loading-spinner ml-2 w-4 h-4 text-gray-600 animate-spin"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -87,7 +94,7 @@
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
             ></path>
           </svg>
-        </div>
+        </button>
       </form>
       <div class="text-lg">
         <p>
@@ -118,6 +125,7 @@
         const inputField = document.getElementById('prompt');
         const submitBtn = document.getElementById('submit-btn');
         const loadingSpinner = document.getElementById('loading-spinner');
+        const submitText = document.getElementById('submit-text');
 
         const updateButtonState = function () {
           if (inputField.value.trim() === '') {
@@ -136,6 +144,7 @@
         form.addEventListener('submit', function (event) {
           // Show loading spinner when the form is submitted
           loadingSpinner.classList.add('show');
+          submitText.classList.add('hide');
           // Keep the button disabled while loading
           submitBtn.disabled = true;
           submitBtn.classList.remove('btn-enabled');
@@ -148,6 +157,7 @@
 
         // Remove loading spinner after response is rendered
         loadingSpinner.classList.remove('show');
+        submitText.classList.remove('hide');
       });
     </script>
   </body>
